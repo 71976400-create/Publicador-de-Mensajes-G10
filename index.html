@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Miniaplicación web que valida datos, consume una API REST mediante HTTP POST y presenta dinámicamente los resultados.">
+  <title>Publicador de Mensajes - Ingeniería Web</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Publicador de Mensajes</h1>
+      <p>Consumo de API REST con Fetch API y JavaScript Asíncrono</p>
+    </header>
+
+    <main>
+      <!-- Formulario de publicación -->
+      <form id="post-form" class="card" novalidate>
+        <div class="form-group">
+          <label for="title">Título del mensaje:</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Ej. Arquitectura REST"
+            autocomplete="off"
+            maxlength="120"
+            aria-describedby="title-help">
+          <small id="title-help" class="field-help">Obligatorio. No se admiten campos vacíos ni con solo espacios.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="body">Contenido del mensaje:</label>
+          <textarea
+            id="body"
+            name="body"
+            rows="4"
+            placeholder="Escribe el contenido aquí..."
+            aria-describedby="body-help"></textarea>
+          <small id="body-help" class="field-help">Obligatorio. No se admiten campos vacíos ni con solo espacios.</small>
+        </div>
+
+        <button type="submit" id="btn-submit" aria-busy="false">
+          <span id="btn-text">Publicar Mensaje</span>
+          <span id="btn-spinner" class="spinner hidden" aria-hidden="true"></span>
+        </button>
+      </form>
+
+      <!-- Área de mensajes de estado (anunciada por lectores de pantalla) -->
+      <div id="status-message" class="status-box hidden" role="alert" aria-live="assertive"></div>
+
+      <!-- Contenedor de resultados (anunciado por lectores de pantalla) -->
+      <section id="result-container" class="card hidden" aria-live="polite" aria-atomic="true">
+        <h2>Última Publicación Creada</h2>
+        <div class="result-details">
+          <p><strong>ID local:</strong> <span id="res-id"></span></p>
+          <p><strong>ID remoto (jsonplaceholder):</strong> <span id="res-remote-id"></span></p>
+          <p><strong>Título:</strong> <span id="res-title"></span></p>
+          <p><strong>Contenido:</strong> <span id="res-body"></span></p>
+        </div>
+      </section>
+
+      <!-- Historial local: listado completo y búsqueda por ID -->
+      <section id="history-container" class="card" aria-labelledby="history-title">
+        <h2 id="history-title">Publicaciones guardadas localmente</h2>
+
+        <div class="search-row">
+          <label for="search-id">Buscar por ID:</label>
+          <div class="search-controls">
+            <input type="number" id="search-id" min="1" step="1" placeholder="Ej. 1" inputmode="numeric">
+            <button type="button" id="btn-search">Buscar</button>
+          </div>
+        </div>
+
+        <div id="search-message" class="status-box hidden" role="status" aria-live="polite"></div>
+
+        <ul id="history-list" class="history-list"></ul>
+        <p id="history-empty" class="history-empty">Todavía no hay publicaciones guardadas.</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

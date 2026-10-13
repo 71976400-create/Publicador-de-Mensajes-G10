@@ -1,0 +1,17 @@
+{
+  "name": "publicador-mensajes",
+  "version": "1.0.0",
+  "description": "Miniaplicación web 'Publicador de Mensajes': Fetch asíncrono, validaciones y API local de respaldo con persistencia para consultar publicaciones por ID.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "fetch",
+    "async-await",
+    "dom",
+    "api-rest",
+    "ingenieria-web"
+  ],
+  "license": "MIT"
+}
